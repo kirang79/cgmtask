@@ -14,5 +14,5 @@ export const searchResultPageStyle={
     findButtonBackgroundColor:'#fbba00',
     bookAppointmentBackgroundColor:'#0074bc'
 }
-
+//
 export const LaunchUrl='https://demo.clickdoc.de/cd-de/'
