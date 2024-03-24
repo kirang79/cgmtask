@@ -1,0 +1,4 @@
+{
+  "using": "xpath",
+  "value": ".//button[normalize-space(text()) = \" Fachbereich, Name des Arztes, Praxis oder Einrichtung \"] | .//button[not(.//button[normalize-space(text()) = \" Fachbereich, Name des Arztes, Praxis oder Einrichtung \"]) and normalize-space() = \" Fachbereich, Name des Arztes, Praxis oder Einrichtung \"]"
+}

@@ -1,0 +1,4 @@
+{
+  "using": "css selector",
+  "value": "p[data-automation=\"Address - Postal city code\"]"
+}
