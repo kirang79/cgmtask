@@ -47,62 +47,27 @@ describe('Should be able to search, view details, and book a doctor',()=>{
             expect(addressDetails).toContain(customerToTest.address);
         });
         it('Should match operating hours of the doctor',async ()=>{
-            let operatingHours=await doctorDetailsPage.getOperatingHoursForDay(0);
+            let currentDay=doctorDetailsPage.getCurrentPos();
+            //currentDay=2; //2 is for Wed of index range [Mon - Fri]
+            let operatingHours=await doctorDetailsPage.getOperatingHoursForDay(currentDay);
+            let expectedOperatingHours=customerToTest.operatinghours[currentDay];
             console.log(operatingHours);
-            expect(operatingHours.morningStartTime).toBe(customerToTest.operatinghours.morningopeningHrs);
-            expect(operatingHours.afternoonStartTime).toBe(customerToTest.operatinghours.afterNoonOpeningHours);
-            expect(operatingHours.afternoonEndTime).toBe(customerToTest.operatinghours.afterNoonClosingHours);
+            expect(operatingHours.morningStartTime).toBe(expectedOperatingHours.morningopeningHrs);
+            expect(operatingHours.morningEndTime).toBe(expectedOperatingHours.morningClosingHrs);
+            expect(operatingHours.afternoonStartTime).toBe(expectedOperatingHours.afterNoonOpeningHours);
+            expect(operatingHours.afternoonEndTime).toBe(expectedOperatingHours.afterNoonClosingHours);
         });
-        // it('Nearest booking date in bold', async ()=>{
-        //     let nearestOpeningHoursPanel=await doctorDetailsPage.getNearestBookDatePanel();
-        //     const fontWeight = (await nearestOpeningHoursPanel.getCSSProperty('font-weight')).value;
-        //     console.log(fontWeight);
-        //     expect(fontWeight === 'bold').toBe(true);
-        // })
+        it('Current day name should be in bold', async ()=>{
+            let currentDayNum=doctorDetailsPage.getCurrentPos();
+            let dayNamePanel=await doctorDetailsPage.getCurrentDayNamePanel(currentDayNum);
+            let isWorkingDay=doctorDetailsPage.isWorkingDay();
+            if(isWorkingDay)
+            {
+                const fontWeight = (await dayNamePanel.getCSSProperty('font-weight')).value;
+                console.log(fontWeight);
+                expect(fontWeight && (fontWeight === 'bold' || parseInt(fontWeight) >=700 )).toBe(true);
+            }
+            
+        });
     });
-    // describe('Booking Page test', ()=>{
-    //     before(async ()=>{
-    //         await doctorResultsGrid.bookDoctor(0);
-    //     });
-    //     it('validate booking page details',async ()=>{
-            
-    //         await browser.waitUntil(async () =>{
-    //             const parentElement=await (await doctorAppointmentDetails.doctorDetails).parentElement();
-    //             return parentElement.getAttribute('class').then((classes)=>{
-    //                 return classes.includes('data-loaded');
-    //             });
-    //         },{timeout:5000,timeoutMsg:'Expected class not applied on parent element'});
-    //         let doctorName=await doctorAppointmentDetails.getDoctorName();
-    //         expect(doctorName).toBe('Peter Wunderlich');
-
-    //         let availableSlot=await doctorAppointmentDetails.getAvailableSlots('Montag');
-    //         let firstSlot=availableSlot[0];
-    //         expect(firstSlot).toBe('08:00');
-    //         let lastSlot=availableSlot[availableSlot.length-1];
-    //         expect(lastSlot).toBe('17:50');
-    //         let afterNoonSlot=null;
-    //         for(let timeSlot in availableSlot){
-    //             console.log(timeSlot);
-    //             console.log(availableSlot[timeSlot]);
-    //             const [hours,minutes]=availableSlot[timeSlot].split(":").map(Number);
-    //             const diff=hours-12;
-               
-    //             if(diff>=0){
-    //                 afterNoonSlot=availableSlot[timeSlot];
-    //                 break;
-    //             }
-    //         }
-    //         expect(afterNoonSlot).toBe('14:00');
-            
-    //     //let currentDayName=doctorDetails.getCurrentDay();
-    //     //let currentAvailableSlots=await doctorDetails.getAvailableSlots(currentDayName);
-    //     //let currentFirstSlot=currentAvailableSlots[0];
-    //     //expect(currentFirstSlot).toBeUndefined();
-    //     //console.log(currentAvailableSlots);
-
-    //     });
-
-        
-    //});
-    
 })

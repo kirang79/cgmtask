@@ -1,5 +1,5 @@
 import {$} from '@wdio/globals'
-import { LaunchUrl } from '../config/data.config';
+import { LaunchUrl } from '../config/data.config.js';
 //import BasePage from './clickdoc.basepage';
 
 
