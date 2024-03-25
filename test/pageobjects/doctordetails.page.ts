@@ -1,5 +1,4 @@
 import { $ } from '@wdio/globals';
-import { HolidayOperatingHours } from '../config/data.config';
 
 class DoctorDetailsPage {
 
