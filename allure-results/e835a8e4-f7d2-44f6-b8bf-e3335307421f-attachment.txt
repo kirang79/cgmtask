@@ -1,4 +1,0 @@
-{
-  "using": "xpath",
-  "value": ".//h4[normalize-space(text()) = \"Cookie-Einstellungen\"] | .//h4[not(.//h4[normalize-space(text()) = \"Cookie-Einstellungen\"]) and normalize-space() = \"Cookie-Einstellungen\"]"
-}

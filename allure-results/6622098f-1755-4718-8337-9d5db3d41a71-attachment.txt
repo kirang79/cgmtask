@@ -1,3 +1,0 @@
-{
-  "url": "https://demo.clickdoc.de/cd-de"
-}

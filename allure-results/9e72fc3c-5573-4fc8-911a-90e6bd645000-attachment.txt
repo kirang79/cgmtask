@@ -1,4 +1,0 @@
-{
-  "using": "css selector",
-  "value": "div.text-day-hours-container__items"
-}

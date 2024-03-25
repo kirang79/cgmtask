@@ -1,4 +1,0 @@
-{
-  "using": "css selector",
-  "value": "button[data-web-test=\"lp-search-button\"]"
-}

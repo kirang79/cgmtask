@@ -1,5 +1,0 @@
-{
-  "error": "no such element",
-  "message": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\"cd-modal-wrapper [id*=\"dialog\"]\"}\n  (Session info: chrome=123.0.6312.59)",
-  "stacktrace": "\tGetHandleVerifier [0x00007FF728D87062+63090]\n\t(No symbol) [0x00007FF728CF2CB2]\n\t(No symbol) [0x00007FF728B8EC65]\n\t(No symbol) [0x00007FF728BD499D]\n\t(No symbol) [0x00007FF728BD4ADC]\n\t(No symbol) [0x00007FF728C15B37]\n\t(No symbol) [0x00007FF728BF701F]\n\t(No symbol) [0x00007FF728C13412]\n\t(No symbol) [0x00007FF728BF6D83]\n\t(No symbol) [0x00007FF728BC83A8]\n\t(No symbol) [0x00007FF728BC9441]\n\tGetHandleVerifier [0x00007FF7291825CD+4238301]\n\tGetHandleVerifier [0x00007FF7291BF72D+4488509]\n\tGetHandleVerifier [0x00007FF7291B7A0F+4456479]\n\tGetHandleVerifier [0x00007FF728E605A6+953270]\n\t(No symbol) [0x00007FF728CFE57F]\n\t(No symbol) [0x00007FF728CF9254]\n\t(No symbol) [0x00007FF728CF938B]\n\t(No symbol) [0x00007FF728CE9BC4]\n\tBaseThreadInitThunk [0x00007FF89C1C257D+29]\n\tRtlUserThreadStart [0x00007FF89D4CAA58+40]\n"
-}
