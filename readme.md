@@ -1,4 +1,4 @@
-#ClickDoc Consumer Portal UI Automation test suite
+# ClickDoc Consumer Portal UI Automation test suite
 
 ## Pre-requisites
 - Node.js
