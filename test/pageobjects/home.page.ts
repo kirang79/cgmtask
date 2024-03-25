@@ -1,31 +1,31 @@
-import {$} from '@wdio/globals'
+import { $ } from '@wdio/globals'
 import { LaunchUrl } from '../config/data.config.js';
 //import BasePage from './clickdoc.basepage';
 
 
 class HomePage {
-    public get cookiesHeader(){
+    public get cookiesHeader() {
         return $('cd-modal-wrapper [id*="dialog"]');
     }
-    public get acceptCookiesButton(){
+    public get acceptCookiesButton() {
         return $('.agree-consent--all');
     }
-    
-    public get searchTextBox(){
+
+    public get searchTextBox() {
         return $('input[data-web-test="lp-search-input"]');
     }
-    public get searchResultPanel(){
+    public get searchResultPanel() {
         return $('.search-step-list');
     }
-    public get searchButton(){
+    public get searchButton() {
         return $('button[data-web-test="lp-search-button"]');
     }
-    public get locationTextBox(){
+    public get locationTextBox() {
         return $('input[data-web-test="lp-location-input"]');
     }
-    public async open():Promise<void>{
+    public async open(): Promise<void> {
         browser.url(LaunchUrl);
     }
 }
 
-export const homePage= new HomePage();
+export const homePage = new HomePage();
