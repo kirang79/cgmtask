@@ -14,18 +14,20 @@ describe('Should be able to search, view details, and book a doctor', () => {
         await (await homePage.searchButton).click();
         await domHelper.waitForVisiblility(doctorResultsGrid.resultsPanel, 60000);
     });
-    describe('Search for doctor', () => { 
+    describe('Search for doctor', () => {
         it('should be able to serch for a doctor with name, address and validate name, address and nearest available month', async () => {
-            
+
             let doctorDetails = await doctorResultsGrid.getDoctorDetailsByIndex(0);
             expect(doctorDetails.name).toBe(customerToTest.name)
             expect(doctorDetails.dateAvailable).toContain(customerToTest.nearestMonthAvailable);
             expect(doctorDetails.address).toContain(customerToTest.address);
         });
         it('should match search results style', async () => {
+            let doctorCards = await doctorResultsGrid.doctorResultCardsByDoctorName(customerToTest.name);
+            let doctorCard = doctorCards[0];
             const findButton = await doctorResultsGrid.findButton;
             let bgColor = await findButton.getCSSProperty('background-color');
-            const bookAppointmentButton = await doctorResultsGrid.getBookAppointmentButton(0);
+            const bookAppointmentButton = await doctorResultsGrid.getBookAppointmentButtonByCard(doctorCard);
             let appointmentBGColor = await bookAppointmentButton.getCSSProperty('background-color');
             expect(bgColor.parsed.hex).toBe(searchResultPageStyle.findButtonBackgroundColor);
             expect(appointmentBGColor.parsed.hex).toBe(searchResultPageStyle.bookAppointmentBackgroundColor);
