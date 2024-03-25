@@ -21,7 +21,6 @@ class DoctorResultsGrid {
     async doctorResultCardsByDoctorName(doctorName: string) {
         let resultsDiv = await $('div.search-results-container');
         const allDoctorResultsGrid = await resultsDiv.$$('app-search-result-card');
-        console.log(allDoctorResultsGrid.count);
         let doctorResultMatchingName = await allDoctorResultsGrid.map(element => this.getDoctorResultCard(element, doctorName));
         let matchingResultCards = await Promise.all(doctorResultMatchingName);
         return matchingResultCards;
