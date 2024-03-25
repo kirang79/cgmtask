@@ -35,7 +35,9 @@ describe('Should be able to search, view details, and book a doctor', () => {
     });
     describe('Should be able to view Doctor Details', () => {
         before(async () => {
-            await doctorResultsGrid.openDoctorDetailsPage(0);
+            let doctorCards = await doctorResultsGrid.doctorResultCardsByDoctorName(customerToTest.name);
+            let doctorCard = doctorCards[0];
+            await doctorResultsGrid.openDoctorDetailsPageByCard(doctorCard);
         });
         it('Should match name of the doctor', async () => {
             await domHelper.waitForVisiblility(doctorDetailsPage.appProfileHeader);

@@ -8,15 +8,10 @@ class DoctorResultsGrid {
     get findButton() {
         return this.resultsPanel.$('button[data-web-test="lp-search-button"]');
     }
-    async getBookAppointmentButton(index: number) {
-        const doctorCard = await this.cardAtIndex(index);
-        return await (await doctorCard.$('button.book-appointment-button')).$('cd-abstract-button');
-    }
     async getBookAppointmentButtonByCard(doctorCard: any) {
         return await (await doctorCard.$('button.book-appointment-button')).$('cd-abstract-button');
     }
-    async openDoctorDetailsPage(index: number) {
-        const doctorCard = await this.cardAtIndex(index);
+    async openDoctorDetailsPageByCard(doctorCard:any) {
         const doctorDetailsLink = await doctorCard.$('a');
         await doctorDetailsLink.click();
     }
@@ -58,10 +53,6 @@ class DoctorResultsGrid {
         const availableSlot = await availableSlotHolder.getText();
         let doctorDetails = new DoctorDetails(name, availableSlot, address);
         return doctorDetails;
-    }
-    async bookDoctor(index: number) {
-        const btnBookAppointment = await this.getBookAppointmentButton(index);
-        await btnBookAppointment.click();
     }
 
 }
