@@ -1,5 +1,0 @@
-{
-  "error": "no such element",
-  "message": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\"lib-physician-info\"}\n  (Session info: chrome=123.0.6312.59)",
-  "stacktrace": "\tGetHandleVerifier [0x00007FF6D1067062+63090]\n\t(No symbol) [0x00007FF6D0FD2CB2]\n\t(No symbol) [0x00007FF6D0E6EC65]\n\t(No symbol) [0x00007FF6D0EB499D]\n\t(No symbol) [0x00007FF6D0EB4ADC]\n\t(No symbol) [0x00007FF6D0EF5B37]\n\t(No symbol) [0x00007FF6D0ED701F]\n\t(No symbol) [0x00007FF6D0EF3412]\n\t(No symbol) [0x00007FF6D0ED6D83]\n\t(No symbol) [0x00007FF6D0EA83A8]\n\t(No symbol) [0x00007FF6D0EA9441]\n\tGetHandleVerifier [0x00007FF6D14625CD+4238301]\n\tGetHandleVerifier [0x00007FF6D149F72D+4488509]\n\tGetHandleVerifier [0x00007FF6D1497A0F+4456479]\n\tGetHandleVerifier [0x00007FF6D11405A6+953270]\n\t(No symbol) [0x00007FF6D0FDE57F]\n\t(No symbol) [0x00007FF6D0FD9254]\n\t(No symbol) [0x00007FF6D0FD938B]\n\t(No symbol) [0x00007FF6D0FC9BC4]\n\tBaseThreadInitThunk [0x00007FF89C1C257D+29]\n\tRtlUserThreadStart [0x00007FF89D4CAA58+40]\n"
-}

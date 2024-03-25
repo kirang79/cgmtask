@@ -1,4 +1,0 @@
-{
-  "using": "css selector",
-  "value": "button .book-appointment-button"
-}
