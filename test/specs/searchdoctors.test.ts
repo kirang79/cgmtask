@@ -1,24 +1,22 @@
-//import { expect } from '@wdio/globals'
 import { homePage } from "../pageobjects/home.page.js";
 import { domHelper } from "../domhelpers.js";
 import { doctorResultsGrid } from "../pageobjects/doctorsearchresults.page.js";
-//import { doctorAppointmentDetails } from "../pageobjects/doctorAppointmentbooking.page.js";
 import { doctorDetailsPage } from "../pageobjects/doctordetails.page.js";
 import { customerToTest, searchResultPageStyle } from "../config/data.config.js";
-//const {getByRole} = setupBrowser(browser)
 
 describe('Should be able to search, view details, and book a doctor', () => {
-    describe('Search for doctor', () => {
-        before(async () => {
-            await homePage.open();
-            await domHelper.waitForVisiblility(homePage.cookiesHeader, 60000);
-            await (await homePage.acceptCookiesButton).click();
-        })
+    before(async () => {
+        await homePage.open();
+        await domHelper.waitForVisiblility(homePage.cookiesHeader, 60000);
+        await (await homePage.acceptCookiesButton).click();
+        await (await homePage.searchTextBox).setValue(customerToTest.name);
+        await (await homePage.locationTextBox).setValue(customerToTest.address);
+        await (await homePage.searchButton).click();
+        await domHelper.waitForVisiblility(doctorResultsGrid.resultsPanel, 60000);
+    });
+    describe('Search for doctor', () => { 
         it('should be able to serch for a doctor with name, address and validate name, address and nearest available month', async () => {
-            await (await homePage.searchTextBox).setValue(customerToTest.name);
-            await (await homePage.locationTextBox).setValue(customerToTest.address);
-            await (await homePage.searchButton).click();
-            await domHelper.waitForVisiblility(doctorResultsGrid.resultsPanel, 60000);
+            
             let doctorDetails = await doctorResultsGrid.getDoctorDetailsByIndex(0);
             expect(doctorDetails.name).toBe(customerToTest.name)
             expect(doctorDetails.dateAvailable).toContain(customerToTest.nearestMonthAvailable);
@@ -47,23 +45,22 @@ describe('Should be able to search, view details, and book a doctor', () => {
             expect(addressDetails).toContain(customerToTest.address);
         });
         it('Should match operating hours of the doctor', async () => {
-            let currentDay = doctorDetailsPage.getCurrentPos();
+            let currentDay = new Date().getDay();
             //currentDay=2; //2 is for Wed of index range [Mon - Fri]
             let operatingHours = await doctorDetailsPage.getOperatingHoursForDay(currentDay);
             let expectedOperatingHours = customerToTest.operatinghours[currentDay];
-            console.log(operatingHours);
             expect(operatingHours.morningStartTime).toBe(expectedOperatingHours.morningopeningHrs);
             expect(operatingHours.morningEndTime).toBe(expectedOperatingHours.morningClosingHrs);
             expect(operatingHours.afternoonStartTime).toBe(expectedOperatingHours.afterNoonOpeningHours);
             expect(operatingHours.afternoonEndTime).toBe(expectedOperatingHours.afterNoonClosingHours);
         });
         it('Current day name should be in bold', async () => {
-            let currentDayNum = doctorDetailsPage.getCurrentPos();
+            let currentDay = new Date().getDay();
+            let currentDayNum = doctorDetailsPage.getCurrentPosRelativeToWorkingDays(currentDay);
             let dayNamePanel = await doctorDetailsPage.getCurrentDayNamePanel(currentDayNum);
-            let isWorkingDay = doctorDetailsPage.isWorkingDay();
+            let isWorkingDay = doctorDetailsPage.isWorkingDay(currentDay);
             if (isWorkingDay) {
                 const fontWeight = (await dayNamePanel.getCSSProperty('font-weight')).value;
-                console.log(fontWeight);
                 expect(fontWeight && (fontWeight === 'bold' || parseInt(fontWeight) >= 700)).toBe(true);
             }
 
